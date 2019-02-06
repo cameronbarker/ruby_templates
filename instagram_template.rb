@@ -583,7 +583,7 @@ after_bundle do
 	set_nav
 	set_footer
 	set_up_layout
-	create_instagram_client
+	# create_instagram_client
 
 	# run migration 
 	run 'bundle exec rails db:drop'
