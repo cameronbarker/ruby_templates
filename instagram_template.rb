@@ -403,7 +403,7 @@ class InstagramClient
     
   #   stories.each do |s| 
   #     caption = s["caption"]
-  #     s["media_type"] = "STORY-#{s["media_type"]}"
+  #     s["media_type"] = "STORY-\#{s["media_type"]}"
   #     s["tagged_users"] = caption.to_s.scan(/@\w+/).map{|t| t.gsub("@", "")}.uniq.join(" ")
   #     s["tags"] = caption.to_s.scan(/#\w+/).map{|t| t.gsub("@", "")}.uniq.join(" ")
   #     s["created_time"] = Time.parse(s["timestamp"]).to_i
