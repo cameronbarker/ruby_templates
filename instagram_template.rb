@@ -321,7 +321,7 @@ def set_up_layout
 		= csrf_meta_tags
 		= csp_meta_tag
 		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+		= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 	%body
 		= render "layouts/partials/flash"
 		= render "layouts/partials/nav"
