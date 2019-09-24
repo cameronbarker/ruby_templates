@@ -536,7 +536,7 @@ class InstagramController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to "/instagram_business/#{current_user.id}"
+      redirect_to root_path
     else
       render :edit, notice: 'Something went wrong.  Please try again.'
     end
