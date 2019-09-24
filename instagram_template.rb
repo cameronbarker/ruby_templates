@@ -591,18 +591,22 @@ after_bundle do
 	create_session_controller
 	generate_application_controller
 	add_home_page
+	generate_application_helper
 	set_up_flash_notification
 	set_nav
 	set_footer
 	set_up_layout
-	# create_instagram_client
-	# create_instagram_account_selection
+	create_instagram_client
+	create_instagram_account_selection
 
 	# run migration 
 	run 'bundle exec rails db:drop'
 	run 'bundle exec rails db:create'
 	run 'bundle exec rails db:migrate'
 	run 'bundle exec rails db:seed'
+
+	run 'gem install haml-rails -v 2.0.1'
+	run 'HAML_RAILS_DELETE_ERB=true rails haml:erb2haml'
 
 	run 'git add .'
 	run 'git commit -m "initial commit"'
