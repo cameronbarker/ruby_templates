@@ -575,12 +575,11 @@ end
 
 end
 
-run "rvm use 2.5.3"
 add_gems
 
 after_bundle do
 	run "spring stop"
-	
+	create_instagram_account_selection
 	add_figaro
 	add_omniauth_config
 	add_bootstrap
@@ -597,16 +596,12 @@ after_bundle do
 	set_footer
 	set_up_layout
 	create_instagram_client
-	create_instagram_account_selection
 
 	# run migration 
 	run 'bundle exec rails db:drop'
 	run 'bundle exec rails db:create'
 	run 'bundle exec rails db:migrate'
 	run 'bundle exec rails db:seed'
-
-	run 'gem install haml-rails -v 2.0.1'
-	run 'HAML_RAILS_DELETE_ERB=true rails haml:erb2haml'
 
 	run 'git add .'
 	run 'git commit -m "initial commit"'
