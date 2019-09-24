@@ -161,7 +161,7 @@ end
 
 def create_session_controller
 	session_code = <<-CODE
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
   def new
     redirect_to 'auth/instagram_business', status: 301
   end
@@ -193,8 +193,8 @@ end
 	create_file 'app/controllers/sessions_controller.rb', session_code
 
 	# add route back to authentication
-	route "get '/auth/:provider/callback', to: 'session#create'"
-	route "get '/logout', to: 'session#destroy'"
+	route "get '/auth/:provider/callback', to: 'sessions#create'"
+	route "get '/logout', to: 'sessions#destroy'"
 end
 
 def generate_application_controller
@@ -226,6 +226,18 @@ end
 	run 'mkdir app/views/static/'
 	create_file 'app/views/static/home.haml', "%h1 Welcome to this Template"
 	route "root to: 'static#home'"
+end
+
+def generate_application_helper
+	helper_code = <<-CODE
+module ApplicationHelper
+  def bootstrap_class_for flash_type
+    { success: "alert-success", error: "alert-error", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
+  end
+end
+	CODE
+	
+	create_file 'app/helpers/application_helper.rb', helper_code, force: true
 end
 
 def set_up_flash_notification
